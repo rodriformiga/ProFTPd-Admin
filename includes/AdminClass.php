@@ -144,6 +144,18 @@ class AdminClass {
     }
 
     /**
+     * retrieves all login_history from db and populates an associative array
+     * @return Array an array containing the records or false on failure
+     */
+    function get_login_hst_by_userid($userid) {
+        $format = 'SELECT * FROM %s WHERE %s = "%s" ORDER BY %s DESC LIMIT %s';
+        $query = sprintf( $format, $this->config['table_login_history'], $this->config['field_userid'], $userid, $this->config['field_acessed'], $this->config['max_login_hst']);
+        $result = $this->dbConn->get_results($query, ARRAY_A);
+        if (!$result) return false;
+        return $result;
+    }
+
+    /**
      * returns either the total number or the number of empty groups in the db
      * @param Boolean $only_emtpy
      * @return Integer number or false on error

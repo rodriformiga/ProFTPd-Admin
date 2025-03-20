@@ -41,6 +41,11 @@ $field_bytes_out_used = $cfg['field_bytes_out_used'];
 $field_files_in_used  = $cfg['field_files_in_used'];
 $field_files_out_used = $cfg['field_files_out_used'];
 
+$field_client_ip = $cfg['field_client_ip'];
+$field_server_ip = $cfg['field_server_ip'];
+$field_protocol  = $cfg['field_protocol'];
+$field_acessed   = $cfg['field_acessed'];
+
 if (empty($_REQUEST[$field_id])) {
   header("Location: users.php");
   die();
@@ -63,6 +68,7 @@ if (!$ac->is_valid_id($id)) {
       $warnmsg = 'Main group does not exist; cannot find GID '.$ugid.' in the database.';
     }
     $ad_gid = $ac->parse_groups($userid);
+    $logins = $ac->get_login_hst_by_userid($userid);
   }
 }
 
@@ -402,6 +408,40 @@ include ("includes/header.php");
             </div>
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- User Login History -->
+<div class="col-xs-12 col-sm-6">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <a data-toggle="collapse" href="#userhist" aria-expanded="true" aria-controls="userhist">Login History</a>
+      </h3>
+    </div>
+    <div class="panel-body collapse in" id="userhist" aria-expanded="true">
+      <div class="col-sm-12">
+        <?php if(!$logins) { ?>
+          <p>Currently there are no history login with this user.</p>
+        <?php } else { ?>
+          <table class="table table-striped table-condensed sortable">
+            <thead>
+              <th>Login Date</th>
+              <th>Protocol</th>
+              <th>IP</th>
+            </thead>
+            <tbody>
+              <?php foreach ($logins as $login) { ?>
+                <tr>
+                  <td class="pull-middle"><?php echo $login[$field_acessed]; ?></td>
+                  <td class="pull-middle"><?php echo $login[$field_protocol]; ?></td>
+                  <td class="pull-middle"><?php echo $login[$field_client_ip]; ?></td>
+                </tr>
+              <?php } ?>
+            </tbody>
+          </table>
+        <?php } ?>
       </div>
     </div>
   </div>
