@@ -35,6 +35,7 @@ $field_disabled = $cfg['field_disabled'];
 $field_login_count    = $cfg['field_login_count'];
 $field_last_login     = $cfg['field_last_login'];
 $field_last_modified  = $cfg['field_last_modified'];
+$field_last_modi_file = $cfg['field_last_modi_file'];
 $field_bytes_in_used  = $cfg['field_bytes_in_used'];
 $field_bytes_out_used = $cfg['field_bytes_out_used'];
 $field_files_in_used  = $cfg['field_files_in_used'];
@@ -363,6 +364,13 @@ include ("includes/header.php");
             <label for="<?php echo $field_last_modified; ?>" class="col-sm-4 control-label">Last modified</label>
             <div class="controls col-sm-8">
               <input type="text" class="form-control" id="<?php echo $field_last_modified; ?>" name="<?php echo $field_last_modified; ?>" value="<?php echo $user[$field_last_modified]; ?>" readonly />
+            </div>
+          </div>
+          <!-- Last file modified (readonly) -->
+          <div class="form-group">
+            <label for="<?php echo $field_last_modi_file; ?>" class="col-sm-4 control-label">Last file modified</label>
+            <div class="controls col-sm-8">
+              <input type="text" class="form-control" id="<?php echo $field_last_modi_file; ?>" name="<?php echo $field_last_modi_file; ?>" value="<?php echo $user[$field_last_modi_file]; ?>" readonly />
             </div>
           </div>
           <!-- Bytes in (readonly) -->
