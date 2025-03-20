@@ -51,6 +51,9 @@
 		var $sql_log_file     = false;
 		var $do_profile       = false;
 		var $profile_times    = array();
+		var $func_call        = null;
+		var $last_result      = null;
+		var $from_disk_cache  = false;
 
 		// == TJH == default now needed for echo of debug function
 		var $debug_echo_is_on = true;
@@ -164,8 +167,11 @@
 				$this->query($query);
 			}
 
+			if ( is_null($this->last_result) ){
+				return null;
+			}
 			// If the output is an object then return object using the row offset..
-			if ( $output == OBJECT )
+			elseif ( $output == OBJECT )
 			{
 				return $this->last_result[$y]?$this->last_result[$y]:null;
 			}
@@ -618,7 +624,7 @@
 				}
 			}
 
-			return implode( ', ' , $sql );
+			return implode(', ' , $sql);
 		}
 
 		/**

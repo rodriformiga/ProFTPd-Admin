@@ -61,7 +61,7 @@ class AdminClass {
      * initialize the database connection via ezSQL_mysql
      * @param Array $cfg configuration array retrieved from config.php to store in the object
      */
-    function AdminClass($cfg) {
+    function __construct($cfg) {
         $this->config = $cfg;
         // if db_type is not set, default to mysqli
         if (!isset($cfg['db_type']) || $cfg['db_type'] == "mysqli") {
@@ -99,7 +99,7 @@ class AdminClass {
             foreach ($result as $group) {
                 $names = explode(",", $group->$field_members);
                 reset($names);
-                while (list($key, $name) = each($names)) {
+                foreach ($names as $key => $name) {
                     $data[$name][$group->$field_gid] = $group->$field_groupname;
                 }
             }
@@ -513,7 +513,7 @@ class AdminClass {
         if(strpos($result, $userid) === false) {
             return true;
         }
-        $members_array = explode(",", $result);
+        $members_array = explode(",", (string)$result);
         $members_new_array = array_diff($members_array, array("$userid", ""));
         if (is_array($members_new_array)) {
             $members_new = implode(",", $members_new_array);

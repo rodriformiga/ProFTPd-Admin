@@ -33,6 +33,7 @@
 	class ezSQL_mysqli extends ezSQLcore
 	{
 
+		var $dbh = null;
 		var $dbuser = false;
 		var $dbpassword = false;
 		var $dbname = false;
@@ -40,6 +41,8 @@
 		var $dbport = false;
 		var $encoding = false;
 		var $rows_affected = false;
+		var $result = null;
+		var $num_rows = 0;
 
 		/**********************************************************************
 		*  Constructor - allow the user to perform a quick connect at the
