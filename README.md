@@ -65,8 +65,18 @@ SQLConnectInfo          database@localhost username password
 SQLUserInfo             users userid passwd uid gid homedir shell
 SQLGroupInfo            groups groupname gid members
 SQLUserWhereClause      "disabled != 1"
+
+ # Register login counter and date
 SQLLog PASS             updatecount
 SQLNamedQuery           updatecount UPDATE "login_count=login_count+1, last_login=now() WHERE userid='%u'" users
+
+ # Register login history
+SQLLog PASS             log_sess
+SQLNamedQuery           log_sess INSERT "'%u', '%a', '%V', '%{protocol}', NOW()" login_history
+
+ # Register file changes
+SQLLog STOR,DELE        modified
+SQLNamedQuery           modified UPDATE "modified_file=now() WHERE userid='%u'" users
 
  # Used to track xfer traffic per user (without invoking a quota)
 SQLLog RETR             bytes-out-count
