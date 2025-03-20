@@ -199,71 +199,7 @@ include ("includes/header.php");
 <?php include ("includes/messages.php"); ?>
 
 <?php if (is_array($user)) { ?>
-<!-- User metadata panel -->
-<div class="col-xs-12 col-sm-6">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">
-        <a data-toggle="collapse" href="#userstats" aria-expanded="true" aria-controls="userstats">User statistics</a>
-      </h3>
-    </div>
-    <div class="panel-body collapse in" id="userstats" aria-expanded="true">
-      <div class="col-sm-12">
-        <form role="form" class="form-horizontal" method="post" data-toggle="validator">
-          <!-- Login count (readonly) -->
-          <div class="form-group">
-            <label for="<?php echo $field_login_count; ?>" class="col-sm-4 control-label">Login count</label>
-            <div class="controls col-sm-8">
-              <input type="text" class="form-control" id="<?php echo $field_login_count; ?>" name="<?php echo $field_login_count; ?>" value="<?php echo $user[$field_login_count]; ?>" readonly />
-            </div>
-          </div>
-          <!-- Last login (readonly) -->
-          <div class="form-group">
-            <label for="<?php echo $field_last_login; ?>" class="col-sm-4 control-label">Last login</label>
-            <div class="controls col-sm-8">
-              <input type="text" class="form-control" id="<?php echo $field_last_login; ?>" name="<?php echo $field_last_login; ?>" value="<?php echo $user[$field_last_login]; ?>" readonly />
-            </div>
-          </div>
-          <!-- Last modified (readonly) -->
-          <div class="form-group">
-            <label for="<?php echo $field_last_modified; ?>" class="col-sm-4 control-label">Last modified</label>
-            <div class="controls col-sm-8">
-              <input type="text" class="form-control" id="<?php echo $field_last_modified; ?>" name="<?php echo $field_last_modified; ?>" value="<?php echo $user[$field_last_modified]; ?>" readonly />
-            </div>
-          </div>
-          <!-- Bytes in (readonly) -->
-          <div class="form-group">
-            <label for="<?php echo $field_bytes_in_used; ?>" class="col-sm-4 control-label">Bytes uploaded</label>
-            <div class="controls col-sm-8">
-              <input type="text" class="form-control" id="<?php echo $field_bytes_in_used; ?>" name="<?php echo $field_bytes_in_used; ?>" value="<?php echo sprintf("%2.1f", $user[$field_bytes_in_used] / 1048576); ?> MB" readonly />
-            </div>
-          </div>
-          <!-- Bytes out (readonly) -->
-          <div class="form-group">
-            <label for="<?php echo $field_bytes_out_used; ?>" class="col-sm-4 control-label">Bytes downloaded</label>
-            <div class="controls col-sm-8">
-              <input type="text" class="form-control" id="<?php echo $field_bytes_out_used; ?>" name="<?php echo $field_bytes_out_used; ?>" value="<?php echo sprintf("%2.1f", $user[$field_bytes_out_used] / 1048576); ?> MB" readonly />
-            </div>
-          </div>
-          <!-- Files in (readonly) -->
-          <div class="form-group">
-            <label for="<?php echo $field_files_in_used; ?>" class="col-sm-4 control-label">Files uploaded</label>
-            <div class="controls col-sm-8">
-              <input type="text" class="form-control" id="<?php echo $field_files_in_used; ?>" name="<?php echo $field_files_in_used; ?>" value="<?php echo $user[$field_files_in_used]; ?>" readonly />
-            </div>
-          </div>
-          <!-- Files out (readonly) -->
-          <div class="form-group">
-            <label for="<?php echo $field_files_out_used; ?>" class="col-sm-4 control-label">Files downloaded</label>
-            <div class="controls col-sm-8">
-              <input type="text" class="form-control" id="<?php echo $field_files_out_used; ?>" name="<?php echo $field_files_out_used; ?>" value="<?php echo $user[$field_files_out_used]; ?>" readonly />
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+
 <!-- Edit panel -->
 <div class="col-xs-12 col-sm-6">
   <div class="panel panel-default">
@@ -390,6 +326,71 @@ include ("includes/header.php");
               <input type="hidden" name="<?php echo $field_id; ?>" value="<?php echo $id; ?>" />
               <a class="btn btn-danger" href="remove_user.php?action=remove&<?php echo $field_id; ?>=<?php echo $id; ?>">Remove user</a>
               <button type="submit" class="btn btn-primary pull-right" name="action" value="update">Update user</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- User metadata panel -->
+<div class="col-xs-12 col-sm-6">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <a data-toggle="collapse" href="#userstats" aria-expanded="true" aria-controls="userstats">User statistics</a>
+      </h3>
+    </div>
+    <div class="panel-body collapse in" id="userstats" aria-expanded="true">
+      <div class="col-sm-12">
+        <form role="form" class="form-horizontal" method="post" data-toggle="validator">
+          <!-- Login count (readonly) -->
+          <div class="form-group">
+            <label for="<?php echo $field_login_count; ?>" class="col-sm-4 control-label">Login count</label>
+            <div class="controls col-sm-8">
+              <input type="text" class="form-control" id="<?php echo $field_login_count; ?>" name="<?php echo $field_login_count; ?>" value="<?php echo $user[$field_login_count]; ?>" readonly />
+            </div>
+          </div>
+          <!-- Last login (readonly) -->
+          <div class="form-group">
+            <label for="<?php echo $field_last_login; ?>" class="col-sm-4 control-label">Last login</label>
+            <div class="controls col-sm-8">
+              <input type="text" class="form-control" id="<?php echo $field_last_login; ?>" name="<?php echo $field_last_login; ?>" value="<?php echo $user[$field_last_login]; ?>" readonly />
+            </div>
+          </div>
+          <!-- Last modified (readonly) -->
+          <div class="form-group">
+            <label for="<?php echo $field_last_modified; ?>" class="col-sm-4 control-label">Last modified</label>
+            <div class="controls col-sm-8">
+              <input type="text" class="form-control" id="<?php echo $field_last_modified; ?>" name="<?php echo $field_last_modified; ?>" value="<?php echo $user[$field_last_modified]; ?>" readonly />
+            </div>
+          </div>
+          <!-- Bytes in (readonly) -->
+          <div class="form-group">
+            <label for="<?php echo $field_bytes_in_used; ?>" class="col-sm-4 control-label">Bytes uploaded</label>
+            <div class="controls col-sm-8">
+              <input type="text" class="form-control" id="<?php echo $field_bytes_in_used; ?>" name="<?php echo $field_bytes_in_used; ?>" value="<?php echo sprintf("%2.1f", $user[$field_bytes_in_used] / 1048576); ?> MB" readonly />
+            </div>
+          </div>
+          <!-- Bytes out (readonly) -->
+          <div class="form-group">
+            <label for="<?php echo $field_bytes_out_used; ?>" class="col-sm-4 control-label">Bytes downloaded</label>
+            <div class="controls col-sm-8">
+              <input type="text" class="form-control" id="<?php echo $field_bytes_out_used; ?>" name="<?php echo $field_bytes_out_used; ?>" value="<?php echo sprintf("%2.1f", $user[$field_bytes_out_used] / 1048576); ?> MB" readonly />
+            </div>
+          </div>
+          <!-- Files in (readonly) -->
+          <div class="form-group">
+            <label for="<?php echo $field_files_in_used; ?>" class="col-sm-4 control-label">Files uploaded</label>
+            <div class="controls col-sm-8">
+              <input type="text" class="form-control" id="<?php echo $field_files_in_used; ?>" name="<?php echo $field_files_in_used; ?>" value="<?php echo $user[$field_files_in_used]; ?>" readonly />
+            </div>
+          </div>
+          <!-- Files out (readonly) -->
+          <div class="form-group">
+            <label for="<?php echo $field_files_out_used; ?>" class="col-sm-4 control-label">Files downloaded</label>
+            <div class="controls col-sm-8">
+              <input type="text" class="form-control" id="<?php echo $field_files_out_used; ?>" name="<?php echo $field_files_out_used; ?>" value="<?php echo $user[$field_files_out_used]; ?>" readonly />
             </div>
           </div>
         </form>
